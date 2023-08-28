@@ -1,0 +1,152 @@
+[
+  {
+    "m_type": "main/INFO",
+    "cause": "cpw.mods.modlauncher.Launcher/MODLAUNCHER",
+    "date": "29Dec2022 02:21:19.841",
+    "description": ": ModLauncher 8.1.3+8.1.3+main-8.1.x.c94d18ec starting:\njava version 1.8.0_51 by Oracle Corporation"
+  },
+  {
+    "m_type": "main/DEBUG",
+    "cause": "cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER",
+    "date": "29Dec2022 02:21:19.852",
+    "description": ": Found launch services [minecraft,testharness,fmlclient,fmlserver]"
+  },
+  {
+    "m_type": "main/WARN",
+    "cause": "cpw.mods.modlauncher.SecureJarHandler/",
+    "date": "29Dec2022 02:21:19.856",
+    "description": ": LEGACY JDK DETECTED, SECURED JAR HANDLING DISABLED"
+  },
+  {
+    "m_type": "pool-3-thread-1/DEBUG",
+    "cause": "mixin/",
+    "date": "29Dec2022 02:21:22.975",
+    "description": ": Mixing access.BiomeAccess from byg.mixins.json into net.minecraft.world.biome.Biome"
+  },
+  {
+    "m_type": "modloading-worker-5/DEBUG",
+    "cause": "net.minecraftforge.fml.AutomaticEventSubscriber/LOADING",
+    "date": "29Dec2022 02:21:32.583",
+    "description": ": Auto-subscribing net.blay09.mods.waystones.client.ModTextures to MOD"
+  },
+  {
+    "m_type": "modloading-worker-4/DEBUG",
+    "cause": "net.minecraftforge.fml.AutomaticEventSubscriber/LOADING",
+    "date": "29Dec2022 02:21:32.599",
+    "description": ": Attempting to inject @EventBusSubscriber classes into the eventbus for clumps"
+  },
+  {
+    "m_type": "modloading-worker-1/DEBUG",
+    "cause": "net.minecraftforge.fml.config.ConfigTracker/CONFIG",
+    "date": "29Dec2022 02:21:32.617",
+    "description": ": Config file curios-server.toml for curios tracking"
+  },
+  {
+    "m_type": "Worker-Main-8/DEBUG",
+    "cause": "thedarkcolour.kotlinforforge.LoggerKt/",
+    "date": "29Dec2022 02:21:53.014",
+    "description": ": Fired event for modid bountiful : net.minecraftforge.client.event.TextureStitchEvent$Pre@5c265d48"
+  },
+  {
+    "m_type": "Worker-Main-10/DEBUG",
+    "cause": "thedarkcolour.kotlinforforge.LoggerKt/",
+    "date": "29Dec2022 02:21:53.218",
+    "description": ": Firing event for modid bountiful : InterModEnqueueEvent"
+  },
+  {
+    "m_type": "Worker-Main-7/DEBUG",
+    "cause": "thedarkcolour.kotlinforforge.LoggerKt/",
+    "date": "29Dec2022 02:21:53.279",
+    "description": ": Fired event for modid bountiful : InterModProcessEvent"
+  },
+  {
+    "m_type": "Worker-Main-11/DEBUG",
+    "cause": "thedarkcolour.kotlinforforge.LoggerKt/",
+    "date": "29Dec2022 02:21:53.318",
+    "description": ": Firing event for modid bountiful : FMLLoadCompleteEvent"
+  },
+  {
+    "m_type": "Forge Version Check/INFO",
+    "cause": "net.minecraftforge.fml.VersionChecker/",
+    "date": "29Dec2022 02:22:15.112",
+    "description": ": [corpse] Starting version check at https://maxhenkel.de/update/corpse.json"
+  },
+  {
+    "m_type": "Forge Version Check/WARN",
+    "cause": "net.minecraftforge.fml.VersionChecker/",
+    "date": "29Dec2022 02:22:15.538",
+    "description": ": Failed to process update information\njava.lang.NullPointerException: null\n\tat net.minecraftforge.fml.VersionChecker$1.openUrlString(VersionChecker.java:160) ~[forge:?]\n\tat net.minecraftforge.fml.VersionChecker$1.process(VersionChecker.java:187) ~[forge:?]\n\tat java.lang.Iterable.forEach(Unknown Source) [?:1.8.0_202]\n\tat net.minecraftforge.fml.VersionChecker$1.run(VersionChecker.java:128) [forge:?]"
+  },
+  {
+    "m_type": "Server thread/WARN",
+    "cause": "net.minecraftforge.common.ForgeConfigSpec/CORE",
+    "date": "29Dec2022 02:22:24.292",
+    "description": ": Incorrect key items.bunny_hoppers.durability was corrected from null to its default, 0."
+  },
+  {
+    "m_type": "Server thread/DEBUG",
+    "cause": "net.minecraftforge.common.ForgeConfigSpec/CORE",
+    "date": "29Dec2022 02:22:24.292",
+    "description": ": The comment on key items.bunny_hoppers.durability does not match the spec. This may create a backup."
+  },
+  {
+    "m_type": "Netty Server IO #2/DEBUG",
+    "cause": "net.minecraftforge.fml.network.FMLHandshakeHandler/FMLHANDSHAKE",
+    "date": "29Dec2022 02:23:27.692",
+    "description": ": Received client indexed reply 23 of type net.minecraftforge.fml.network.FMLHandshakeMessages$C2SAcknowledge"
+  },
+  {
+    "m_type": "Netty Server IO #2/DEBUG",
+    "cause": "net.minecraftforge.fml.network.FMLHandshakeHandler/FMLHANDSHAKE",
+    "date": "29Dec2022 02:23:27.692",
+    "description": ": Received acknowledgement from client"
+  },
+  {
+    "m_type": "Server Watchdog/FATAL",
+    "cause": "net.minecraft.server.dedicated.ServerHangWatchdog/",
+    "date": "29Dec2022 02:25:27.654",
+    "description": ": A single server tick took 60.00 seconds (should be max 0.05)"
+  },
+  {
+    "m_type": "Server thread/WARN",
+    "cause": "net.minecraft.server.MinecraftServer/",
+    "date": "29Dec2022 02:28:42.744",
+    "description": ": Can't keep up! Is the server overloaded? Running 255092ms or 5101 ticks behind"
+  },
+  {
+    "m_type": "Server Watchdog/FATAL",
+    "cause": "net.minecraft.server.dedicated.ServerHangWatchdog/",
+    "date": "29Dec2022 02:28:42.745",
+    "description": ": Considering it to be crashed, server will forcibly shutdown."
+  },
+  {
+    "m_type": "Server Watchdog/FATAL",
+    "cause": "net.minecraftforge.common.ForgeMod/",
+    "date": "29Dec2022 02:28:42.923",
+    "description": ": Preparing crash report with UUID be60c019-f5f4-468a-8382-7b84e05b0e87"
+  },
+  {
+    "m_type": "Server Watchdog/INFO",
+    "cause": "STDOUT/",
+    "date": "29Dec2022 02:28:42.928",
+    "description": ": [net.minecraft.util.registry.Bootstrap:func_179870_a:123]: Crash report:\n---- Minecraft Crash Report ----\n// Hey, that tickles! Hehehe!\n\nTime: 12/29/22 2:28 AM\nDescription: Watching Server\n\njava.lang.Error: ServerHangWatchdog detected that a single server tick took 60.00 seconds (should be max 0.05)\n\tat java.util.ArrayList.forEach(Unknown Source) ~[?:1.8.0_202] {}\n\tat net.minecraft.world.server.ServerChunkProvider.func_217220_m(ServerChunkProvider.java:351) ~[?:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:runtimedistcleaner:A}\n\tat net.minecraft.world.server.ServerChunkProvider.func_217207_a(ServerChunkProvider.java:326) ~[?:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:runtimedistcleaner:A}\n\tat net.minecraft.world.server.ServerWorld.func_72835_b(ServerWorld.java:334) ~[?:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:runtimedistcleaner:A}\n\tat net.minecraft.server.MinecraftServer.func_71190_q(MinecraftServer.java:851) ~[?:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:APP:byg.mixins.json:server.MixinMinecraftServer,pl:mixin:A,pl:runtimedistcleaner:A}\n\tat net.minecraft.server.dedicated.DedicatedServer.func_71190_q(DedicatedServer.java:291) ~[?:?] {re:classloading,pl:accesstransformer:B}\n\tat net.minecraft.server.MinecraftServer.func_71217_p(MinecraftServer.java:787) ~[?:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:APP:byg.mixins.json:server.MixinMinecraftServer,pl:mixin:A,pl:runtimedistcleaner:A}\n\tat net.minecraft.server.MinecraftServer.func_240802_v_(MinecraftServer.java:642) ~[?:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:APP:byg.mixins.json:server.MixinMinecraftServer,pl:mixin:A,pl:runtimedistcleaner:A}\n\tat net.minecraft.server.MinecraftServer.func_240783_a_(MinecraftServer.java:232) ~[?:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:APP:byg.mixins.json:server.MixinMinecraftServer,pl:mixin:A,pl:runtimedistcleaner:A}\n\tat net.minecraft.server.MinecraftServer$$Lambda$6267/1272266497.run(Unknown Source) ~[?:?] {}\n\tat java.lang.Thread.run(Unknown Source) [?:1.8.0_202] {}\n\n\nA detailed walkthrough of the error, its code path and all known details is as follows:\n---------------------------------------------------------------------------------------\n\n-- Head --\nThread: Server Watchdog\nStacktrace:\n\tat java.util.ArrayList.forEach(Unknown Source) ~[?:1.8.0_202] {}\n\tat net.minecraft.world.server.ServerChunkProvider.func_217220_m(ServerChunkProvider.java:351) ~[?:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:runtimedistcleaner:A}\n\tat net.minecraft.world.server.ServerChunkProvider.func_217207_a(ServerChunkProvider.java:326) ~[?:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:runtimedistcleaner:A}\n\tat net.minecraft.world.server.ServerWorld.func_72835_b(ServerWorld.java:334) ~[?:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:runtimedistcleaner:A}\n\tat net.minecraft.server.MinecraftServer.func_71190_q(MinecraftServer.java:851) ~[?:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:APP:byg.mixins.json:server.MixinMinecraftServer,pl:mixin:A,pl:runtimedistcleaner:A}\n\tat net.minecraft.server.dedicated.DedicatedServer.func_71190_q(DedicatedServer.java:291) ~[?:?] {re:classloading,pl:accesstransformer:B}\n\tat net.minecraft.server.MinecraftServer.func_71217_p(MinecraftServer.java:787) ~[?:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:APP:byg.mixins.json:server.MixinMinecraftServer,pl:mixin:A,pl:runtimedistcleaner:A}\n\tat net.minecraft.server.MinecraftServer.func_240802_v_(MinecraftServer.java:642) ~[?:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:APP:byg.mixins.json:server.MixinMinecraftServer,pl:mixin:A,pl:runtimedistcleaner:A}\n\tat net.minecraft.server.MinecraftServer.func_240783_a_(MinecraftServer.java:232) ~[?:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:APP:byg.mixins.json:server.MixinMinecraftServer,pl:mixin:A,pl:runtimedistcleaner:A}\n-- Thread Dump --\nDetails:\n\tThreads: \"Worker-Main-18\" Id=72 TIMED_WAITING on java.util.concurrent.ForkJoinPool@1eee2a38\n\tat sun.misc.Unsafe.park(Native Method)\n\t-  waiting on java.util.concurrent.ForkJoinPool@1eee2a38\n\tat java.util.concurrent.ForkJoinPool.awaitWork(Unknown Source)\n\tat java.util.concurrent.ForkJoinPool.runWorker(Unknown Source)\n\tat java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source)\n\n\n\"Worker-Main-17\" Id=71 WAITING on java.util.concurrent.ForkJoinPool@1eee2a38\n\tat sun.misc.Unsafe.park(Native Method)\n\t-  waiting on java.util.concurrent.ForkJoinPool@1eee2a38\n\tat java.util.concurrent.ForkJoinPool.awaitWork(Unknown Source)\n\tat java.util.concurrent.ForkJoinPool.runWorker(Unknown Source)\n\tat java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source)\n\n\n\"Netty Server IO #2\" Id=65 RUNNABLE (in native)\n\tat sun.nio.ch.WindowsSelectorImpl$SubSelector.poll0(Native Method)\n\tat sun.nio.ch.WindowsSelectorImpl$SubSelector.poll(Unknown Source)\n\tat sun.nio.ch.WindowsSelectorImpl$SubSelector.access$400(Unknown Source)\n\tat sun.nio.ch.WindowsSelectorImpl.doSelect(Unknown Source)\n\tat sun.nio.ch.SelectorImpl.lockAndDoSelect(Unknown Source)\n\t-  locked io.netty.channel.nio.SelectedSelectionKeySet@1029c795\n\t-  locked java.util.Collections$UnmodifiableSet@14164148\n\t-  locked sun.nio.ch.WindowsSelectorImpl@5114cdae\n\tat sun.nio.ch.SelectorImpl.select(Unknown Source)\n\tat io.netty.channel.nio.SelectedSelectionKeySetSelector.select(SelectedSelectionKeySetSelector.java:62)\n\tat io.netty.channel.nio.NioEventLoop.select(NioEventLoop.java:756)\n\t...\n\n\n\"Netty Server IO #1\" Id=64 RUNNABLE\n\tat sun.nio.ch.WindowsSelectorImpl$SubSelector.poll0(Native Method)\n\tat sun.nio.ch.WindowsSelectorImpl$SubSelector.poll(Unknown Source)\n\tat sun.nio.ch.WindowsSelectorImpl$SubSelector.access$400(Unknown Source)\n\tat sun.nio.ch.WindowsSelectorImpl.doSelect(Unknown Source)\n\tat sun.nio.ch.SelectorImpl.lockAndDoSelect(Unknown Source)\n\t-  locked io.netty.channel.nio.SelectedSelectionKeySet@3e44925e\n\t-  locked java.util.Collections$UnmodifiableSet@600fff6c\n\t-  locked sun.nio.ch.WindowsSelectorImpl@46b5fe24\n\tat sun.nio.ch.SelectorImpl.select(Unknown Source)\n\tat io.netty.channel.nio.SelectedSelectionKeySetSelector.select(SelectedSelectionKeySetSelector.java:62)\n\tat io.netty.channel.nio.NioEventLoop.select(NioEventLoop.java:756)\n\t...\n\n\n\"Server Watchdog\" Id=62 RUNNABLE\n\tat sun.management.ThreadImpl.dumpThreads0(Native Method)\n\tat sun.management.ThreadImpl.dumpAllThreads(Unknown Source)\n\tat net.minecraft.server.dedicated.ServerHangWatchdog.run(ServerHangWatchdog.java:41)\n\tat java.lang.Thread.run(Unknown Source)\n\n\n\"spark-worker-pool-1-thread-1\" Id=57 WAITING on java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject@313b32e1\n\tat sun.misc.Unsafe.park(Native Method)\n\t-  waiting on java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject@313b32e1\n\tat java.util.concurrent.locks.LockSupport.park(Unknown Source)\n\tat java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(Unknown Source)\n\tat java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(Unknown Source)\n\tat java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(Unknown Source)\n\tat java.util.concurrent.ThreadPoolExecutor.getTask(Unknown Source)\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)\n\t...\n\n\n\"spark-monitor\" Id=56 TIMED_WAITING on java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject@2b7790fa\n\tat sun.misc.Unsafe.park(Native Method)\n\t-  waiting on java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject@2b7790fa\n\tat java.util.concurrent.locks.LockSupport.parkNanos(Unknown Source)\n\tat java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(Unknown Source)\n\tat java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(Unknown Source)\n\tat java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(Unknown Source)\n\tat java.util.concurrent.ThreadPoolExecutor.getTask(Unknown Source)\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)\n\t...\n\n\n\"Thread-7\" Id=55 RUNNABLE (in native)\n\tat sun.nio.fs.WindowsNativeDispatcher.GetQueuedCompletionStatus0(Native Method)\n\tat sun.nio.fs.WindowsNativeDispatcher.GetQueuedCompletionStatus(Unknown Source)\n\tat sun.nio.fs.WindowsWatchService$Poller.run(Unknown Source)\n\tat java.lang.Thread.run(Unknown Source)\n\n\n\"Netty Server IO #0\" Id=54 RUNNABLE (in native)\n\tat sun.nio.ch.WindowsSelectorImpl$SubSelector.poll0(Native Method)\n\tat sun.nio.ch.WindowsSelectorImpl$SubSelector.poll(Unknown Source)\n\tat sun.nio.ch.WindowsSelectorImpl$SubSelector.access$400(Unknown Source)\n\tat sun.nio.ch.WindowsSelectorImpl.doSelect(Unknown Source)\n\tat sun.nio.ch.SelectorImpl.lockAndDoSelect(Unknown Source)\n\t-  locked io.netty.channel.nio.SelectedSelectionKeySet@341cfe67\n\t-  locked java.util.Collections$UnmodifiableSet@5db1721e\n\t-  locked sun.nio.ch.WindowsSelectorImpl@3575ef73\n\tat sun.nio.ch.SelectorImpl.select(Unknown Source)\n\tat io.netty.channel.nio.SelectedSelectionKeySetSelector.select(SelectedSelectionKeySetSelector.java:62)\n\tat io.netty.channel.nio.NioEventLoop.select(NioEventLoop.java:756)\n\t...\n\n\n\"ObjectCleanerThread\" Id=53 TIMED_WAITING on java.lang.ref.ReferenceQueue$Lock@22125967\n\tat java.lang.Object.wait(Native Method)\n\t-  waiting on java.lang.ref.ReferenceQueue$Lock@22125967\n\tat java.lang.ref.ReferenceQueue.remove(Unknown Source)\n\tat io.netty.util.internal.ObjectCleaner$1.run(ObjectCleaner.java:54)\n\tat io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)\n\tat java.lang.Thread.run(Unknown Source)\n\n\n\"Server console handler\" Id=52 RUNNABLE (in native)\n\tat java.io.FileInputStream.readBytes(Native Method)\n\tat java.io.FileInputStream.read(Unknown Source)\n\tat java.io.BufferedInputStream.read1(Unknown Source)\n\tat java.io.BufferedInputStream.read(Unknown Source)\n\t-  locked java.io.BufferedInputStream@71ae6484\n\tat sun.nio.cs.StreamDecoder.readBytes(Unknown Source)\n\tat sun.nio.cs.StreamDecoder.implRead(Unknown Source)\n\tat sun.nio.cs.StreamDecoder.read(Unknown Source)\n\t-  locked java.io.InputStreamReader@2759d92d\n\tat java.io.InputStreamReader.read(Unknown Source)\n\t...\n\n\n\"DestroyJavaVM\" Id=51 RUNNABLE\n\n\n\"Server thread\" Id=48 RUNNABLE\n\tat java.util.ArrayList.forEach(Unknown Source)\n\tat net.minecraft.world.server.ServerChunkProvider.func_217220_m(ServerChunkProvider.java:351)\n\tat net.minecraft.world.server.ServerChunkProvider.func_217207_a(ServerChunkProvider.java:326)\n\tat net.minecraft.world.server.ServerWorld.func_72835_b(ServerWorld.java:334)\n\tat net.minecraft.server.MinecraftServer.func_71190_q(MinecraftServer.java:851)\n\tat net.minecraft.server.dedicated.DedicatedServer.func_71190_q(DedicatedServer.java:291)\n\tat net.minecraft.server.MinecraftServer.func_71217_p(MinecraftServer.java:787)\n\tat net.minecraft.server.MinecraftServer.func_240802_v_(MinecraftServer.java:642)\n\t...\n\n\n\"Snooper Timer\" Id=49 WAITING on java.util.TaskQueue@3dcda4c2\n\tat java.lang.Object.wait(Native Method)\n\t-  waiting on java.util.TaskQueue@3dcda4c2\n\tat java.lang.Object.wait(Unknown Source)\n\tat java.util.TimerThread.mainLoop(Unknown Source)\n\tat java.util.TimerThread.run(Unknown Source)\n\n\n\"Timer hack thread\" Id=24 TIMED_WAITING\n\tat java.lang.Thread.sleep(Native Method)\n\tat net.minecraft.util.Util$6.run(Util.java:505)\n\n\n\"Thread-2\" Id=17 RUNNABLE (in native)\n\tat sun.nio.fs.WindowsNativeDispatcher.GetQueuedCompletionStatus0(Native Method)\n\tat sun.nio.fs.WindowsNativeDispatcher.GetQueuedCompletionStatus(Unknown Source)\n\tat sun.nio.fs.WindowsWatchService$Poller.run(Unknown Source)\n\tat java.lang.Thread.run(Unknown Source)\n\n-- Performance stats --\nDetails:\n\tRandom tick rate: 3\n\tLevel stats: ResourceKey[minecraft:dimension / minecraft:overworld]: players: 1, entities: 345 [minecraft:item:69,minecraft:chest_minecart:35,alexsmobs:crow:34,minecraft:skeleton:28,alexsmobs:raccoon:23], block_entities: 129 [minecraft:mob_spawner:38,supplementaries:copper_lantern:31,minecraft:chest:30,minecraft:campfire:11,minecraft:furnace:5], block_ticks: 11378, fluid_ticks: 7205, chunk_source: ServerChunkCache: 3363,\nResourceKey[minecraft:dimension / minecraft:the_nether]: players: 0, entities: 0 [], block_entities: 0 [], block_ticks: 0, fluid_ticks: 0, chunk_source: ServerChunkCache: 0,\nResourceKey[minecraft:dimension / minecraft:the_end]: players: 0, entities: 0 [], block_entities: 0 [], block_ticks: 0, fluid_ticks: 0, chunk_source: ServerChunkCache: 0\n\n-- System Details --\nDetails:\n\tMinecraft Version: 1.16.5\n\tMinecraft Version ID: 1.16.5\n\tOperating System: Windows 10 (amd64) version 10.0\n\tJava Version: 1.8.0_202, Oracle Corporation\n\tJava VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation\n\tMemory: 525606312 bytes (501 MB) / 1526202368 bytes (1455 MB) up to 3817865216 bytes (3641 MB)\n\tCPUs: 6\n\tJVM Flags: 1 total; -Xmx4G\n\tModLauncher: 8.1.3+8.1.3+main-8.1.x.c94d18ec\n\tModLauncher launch target: fmlserver\n\tModLauncher naming: srg\n\tModLauncher services:\n\t\t/mixin-0.8.4.jar mixin PLUGINSERVICE\n\t\t/eventbus-4.0.0.jar eventbus PLUGINSERVICE\n\t\t/forge-1.16.5-36.2.39.jar object_holder_definalize PLUGINSERVICE\n\t\t/forge-1.16.5-36.2.39.jar runtime_enum_extender PLUGINSERVICE\n\t\t/accesstransformers-3.0.1.jar accesstransformer PLUGINSERVICE\n\t\t/forge-1.16.5-36.2.39.jar capability_inject_definalize PLUGINSERVICE\n\t\t/forge-1.16.5-36.2.39.jar runtimedistcleaner PLUGINSERVICE\n\t\t/mixin-0.8.4.jar mixin TRANSFORMATIONSERVICE\n\t\t/forge-1.16.5-36.2.39.jar fml TRANSFORMATIONSERVICE\n\tFML: 36.2\n\tForge: net.minecraftforge:36.2.39\n\tFML Language Providers:\n\t\tjavafml@36.2\n\t\tminecraft@1\n\t\tkotlinforforge@1.17.0\n\tMod List:\n\t\tforge-1.16.5-36.2.39-server.jar                   |Minecraft                     |minecraft                     |1.16.5              |DONE      |Manifest: NOSIGNATURE\n\t\tmowziesmobs-1.5.27.jar                            |Mowzie's Mobs                 |mowziesmobs                   |1.5.27              |DONE      |Manifest: NOSIGNATURE\n\t\tAmbientSounds_v3.1.11_mc1.16.5.jar                |Ambient Sounds                |ambientsounds                 |3.0.3               |DONE      |Manifest: NOSIGNATURE\n\t\tMouseTweaks-2.14-mc1.16.2.jar                     |Mouse Tweaks                  |mousetweaks                   |2.14                |DONE      |Manifest: NOSIGNATURE\n\t\tJade-1.16.4-2.8.3.jar                             |Jade                          |jade                          |2.8.3               |DONE      |Manifest: NOSIGNATURE\n\t\tCreativeCore_v2.2.1_mc1.16.5.jar                  |CreativeCore                  |creativecore                  |2.0.0               |DONE      |Manifest: NOSIGNATURE\n\t\tjei-1.16.5-7.7.1.153.jar                          |Just Enough Items             |jei                           |7.7.1.153           |DONE      |Manifest: NOSIGNATURE\n\t\tVisualWorkbench-v1.1.0-1.16.5.jar                 |Visual Workbench              |visualworkbench               |1.1.0               |DONE      |Manifest: 9a:09:85:98:65:c4:8c:11:c5:49:f6:d6:33:23:39:df:8d:b4:ff:92:84:b8:bd:a5:83:9f:ac:7f:2a:d1:4b:6a\n\t\tspark-1.9.1-forge.jar                             |spark                         |spark                         |1.9.1               |DONE      |Manifest: NOSIGNATURE\n\t\tcurios-forge-1.16.5-4.0.8.2.jar                   |Curios API                    |curios                        |1.16.5-4.0.8.2      |DONE      |Manifest: NOSIGNATURE\n\t\tWaystones_1.16.5-7.6.4.jar                        |Waystones                     |waystones                     |7.6.4               |DONE      |Manifest: NOSIGNATURE\n\t\tClumps-6.0.0.28.jar                               |Clumps                        |clumps                        |6.0.0.28            |DONE      |Manifest: NOSIGNATURE\n\t\tBetterMushroos-0.0.1.jar                          |Better Mushrooms              |bettermushrooms               |0.0.1               |DONE      |Manifest: NOSIGNATURE\n\t\tcitadel-1.8.1-1.16.5.jar                          |Citadel                       |citadel                       |1.8.1               |DONE      |Manifest: NOSIGNATURE\n\t\talexsmobs-1.12.1.jar                              |Alex's Mobs                   |alexsmobs                     |1.12.1              |DONE      |Manifest: NOSIGNATURE\n\t\tArtifacts-1.16.5-2.10.5.jar                       |Artifacts                     |artifacts                     |1.16.5-2.10.5       |DONE      |Manifest: NOSIGNATURE\n\t\tBookshelf-Forge-1.16.5-10.4.32.jar                |Bookshelf                     |bookshelf                     |10.4.32             |DONE      |Manifest: eb:c4:b1:67:8b:f9:0c:db:dc:4f:01:b1:8e:61:64:39:4c:10:85:0b:a6:c4:c7:48:f0:fa:95:f2:cb:08:3a:e5\n\t\tEnchantmentDescriptions-1.16.5-7.1.20.jar         |EnchantmentDescriptions       |enchdesc                      |7.1.20              |DONE      |Manifest: eb:c4:b1:67:8b:f9:0c:db:dc:4f:01:b1:8e:61:64:39:4c:10:85:0b:a6:c4:c7:48:f0:fa:95:f2:cb:08:3a:e5\n\t\tAI-Improvements-1.16.5-0.5.0.jar                  |AI-Improvements               |aiimprovements                |0.4.0               |DONE      |Manifest: NOSIGNATURE\n\t\tPuzzlesLib-v1.0.15-1.16.5-Forge.jar               |Puzzles Lib                   |puzzleslib                    |1.0.15              |DONE      |Manifest: 9a:09:85:98:65:c4:8c:11:c5:49:f6:d6:33:23:39:df:8d:b4:ff:92:84:b8:bd:a5:83:9f:ac:7f:2a:d1:4b:6a\n\t\tbyg-1.3.6.jar                                     |Oh The Biomes You'll Go       |byg                           |1.3.4               |DONE      |Manifest: NOSIGNATURE\n\t\tforge-1.16.5-36.2.39-universal.jar                |Forge                         |forge                         |36.2.39             |DONE      |Manifest: 22:af:21:d8:19:82:7f:93:94:fe:2b:ac:b7:e4:41:57:68:39:87:b1:a7:5c:c6:44:f9:25:74:21:14:f5:0d:90\n\t\tBountiful-1.16.4-3.3.1.jar                        |Bountiful                     |bountiful                     |1.16.4-3.3.1        |DONE      |Manifest: NOSIGNATURE\n\t\texpandability-2.0.1-forge.jar                     |ExpandAbility                 |expandability                 |2.0.1               |DONE      |Manifest: NOSIGNATURE\n\t\tsupplementaries-1.16.5-0.18.4b.jar                |Supplementaries               |supplementaries               |0.18.2              |DONE      |Manifest: NOSIGNATURE\n\t\tgeckolib-forge-1.16.5-3.0.106.jar                 |GeckoLib                      |geckolib3                     |3.0.106             |DONE      |Manifest: NOSIGNATURE\n\t\tselene-1.16.5-1.9.0.jar                           |Selene                        |selene                        |1.16.5-1.0          |DONE      |Manifest: NOSIGNATURE\n\t\tcorpse-1.16.5-1.0.7.jar                           |Corpse                        |corpse                        |1.16.5-1.0.7        |DONE      |Manifest: NOSIGNATURE\n\t\tchipped-1.16.5-1.2.1-forge.jar                    |Chipped                       |chipped                       |1.16.5-1.2.1-forge  |DONE      |Manifest: NOSIGNATURE\n\tCrash Report UUID: be60c019-f5f4-468a-8382-7b84e05b0e87\n\tPlayer Count: 1 / 20; [ServerPlayerEntity['player'/271, l='ServerLevel[world]', x=438.05, y=105.39, z=11.34]]\n\tData Packs: vanilla, mod:mowziesmobs, mod:ambientsounds, mod:mousetweaks, mod:jade, mod:creativecore, mod:jei, mod:visualworkbench, mod:spark, mod:curios, mod:waystones (incompatible), mod:clumps, mod:bettermushrooms, mod:citadel (incompatible), mod:alexsmobs, mod:artifacts, mod:bookshelf, mod:enchdesc, mod:aiimprovements, mod:puzzleslib, mod:byg, mod:forge, mod:bountiful (incompatible), mod:expandability, mod:supplementaries, mod:geckolib3 (incompatible), mod:selene, mod:corpse, mod:chipped\n\tIs Modded: Definitely; Server brand changed to 'forge'\n\tType: Dedicated Server (map_server.txt)"
+  },
+  {
+    "m_type": "Server thread/INFO",
+    "cause": "net.minecraft.network.play.ServerPlayNetHandler/",
+    "date": "29Dec2022 02:28:42.933",
+    "description": ": player lost connection: Disconnected"
+  },
+  {
+    "m_type": "Server thread/INFO",
+    "cause": "net.minecraft.server.dedicated.DedicatedServer/",
+    "date": "29Dec2022 02:28:42.933",
+    "description": ": player left the game"
+  },
+  {
+    "m_type": "Server Watchdog/ERROR",
+    "cause": "net.minecraft.server.dedicated.ServerHangWatchdog/",
+    "date": "29Dec2022 02:28:42.935",
+    "description": ": This crash report has been saved to: D:\\dev\\mc_server\\ForgeServer_1.16.5\\.\\crash-reports\\crash-2022-12-29_02.28.42-server.txt"
+  }
+]

@@ -9,11 +9,12 @@ Created this tool for two main reasons:
 Usage: axolog.exe [OPTIONS] --path-to-file <PATH_TO_FILE>
 
 Options:
+
       --path-to-file <PATH_TO_FILE>  Path to the log file
       --path-to-save <PATH_TO_SAVE>  Path to save the file with the structured data at. If empty, the formatted output in JSON form gets written to the console [default: ]
       --log-type <LOG_TYPE>          [default: all] [possible values: all, info, debug, warn, error, fatal, main, main-info, main-debug, main-warn, main-error]
-  -h, --help                         Print help
-  -V, --version                      Print version
+      -h, --help                         Print help
+      -V, --version                      Print version
 
 # Supported features
 

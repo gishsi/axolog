@@ -1,8 +1,9 @@
-# axolog
+# [WIP] axolog
 
-Created this tool for two main reasons:
-1. Wanted a small project to learn Rust :)
-2. When creating a Minecraft modded server I found looking through Minecraft crash logs a huge pain. This utility tool aims to make this process easier.
+> Note: This is very much still a work in progress. I am a new Rust programmer and I will refine this code as I learn more about both this programming language and Minecraft logs.
+
+
+**Motivation**: when creating a Minecraft modded server I found looking through Minecraft crash logs a huge pain. This utility tool aims to make this process easier.
 
 # Usage
 

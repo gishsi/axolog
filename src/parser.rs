@@ -9,12 +9,8 @@ const BEGIN_DELIMITER: char = '[';
 const END_DELIMITER: char = ']';
 
 pub fn get_record_from_line(line: &str, log_type: CommonLogTypes) -> Option<Record> {
-    let mut record: Record = Record {
-        m_type: "".to_string(),
-        cause: "".to_string(),
-        date: "".to_string(),
-        description: "".to_string(),
-    };
+    let mut record: Record = Record::default();
+    
     let mut l = line;
     let mut i = 0;
 

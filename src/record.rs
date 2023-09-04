@@ -11,6 +11,15 @@ pub struct Record {
 }
 
 impl Record {
+    pub fn default() -> Record {
+        Record {
+            m_type: "".to_string(),
+            cause: "".to_string(),
+            date: "".to_string(),
+            description: "".to_string(),
+        }
+    }
+
     pub fn _new(t: String, c: String, dt: String, desc: String, ) -> Record {
         Record {
             m_type: t,

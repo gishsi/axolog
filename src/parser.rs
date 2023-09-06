@@ -3,8 +3,8 @@ use std::fs;
 use std::io::{BufRead, BufReader};
 use crate::commonlogtypes::CommonLogTypes;
 use crate::commonlogtypes::CommonLogTypes::All;
+use crate::extract_record::extract_record;
 use crate::record::Record;
-use regex::Regex;
 
 const BEGIN_DELIMITER: char = '[';
 const END_DELIMITER: char = ']';
@@ -32,7 +32,7 @@ pub fn parse_line_into_record(line: &str) -> Option<Record>{
     // if line starts with [ then it is a new record,
     // otherwise it will be a continuation of a previous record description.
     if line.starts_with(BEGIN_DELIMITER) {
-        return Some(extract_record());
+        return Some(extract_record(""));
     }
 
     None
@@ -44,146 +44,6 @@ pub fn parse_line_into_newline_description() -> String {
 
 pub fn filter_records(log_type: CommonLogTypes) -> Vec<Record> {
     vec![]
-}
-
-pub fn extract_record() -> Record{
-    extract_date("[99 22 3333]");
-    extract_type();
-    extract_cause();
-
-    Record::default()
-}
-
-fn parse_date(date: &str) {
-    // Extract the date
-    // let regex = Regex::new(r"(^\[)(?<date>.*?)(\])")
-    //     .unwrap();
-    
-    // let Some(caps) = regex.captures(date) else { 
-    //     panic!("Failed to match") 
-    // };
-
-    // // Validate the format
-    // let date_format_reg = Regex::new(r"^(?<day>\d{2})(?<month>\D{3})(?<year>\d{4}) (?<hour>\d{2})(:)(?<min>\d{2})(:)(?<sec>\d{2}\..*)")
-    //     .unwrap();
-
-    // let Some(c) = date_format_reg.captures(&caps["date"]) else { 
-    //     panic!("Critical failure in test: regex failed to match.") 
-    // };
-
-    // &c[0]
-    // let c = &caps[0].to_owned();
-
-    // c
-}
-
-pub fn extract_date(line: &str) -> (&str, &str) {
-    // let date = parse_date(line).to_string();
-    let begin = line.chars().position(| c | c == BEGIN_DELIMITER).unwrap();
-    let end = line.chars().position(| c | c == END_DELIMITER).unwrap();
-    let mut iter = line.char_indices();
-    let (start, _) = iter.nth(begin).unwrap();
-    let (end, _) = iter.nth(end).unwrap();
-    let slice = &line[start..end];
-
-    let removed_prefix = line.strip_prefix(slice)
-        .unwrap()
-        .trim();
-
-    let line = removed_prefix;
-
-    let token = slice.strip_prefix(BEGIN_DELIMITER).unwrap().strip_suffix(END_DELIMITER).unwrap();
-    
-    // remove the date from the line for further processing
-    // let line = line.to_string().replace(&caps[0], "").trim().to_string();
-
-    (line, token)
-}
-
-pub fn extract_type() {
-
-}
-
-pub fn extract_cause() {
-    
-}
-
-pub fn extract_description() {
-
-}
-
-#[cfg(test)]
-mod parse_second_impl_tests {
-    use crate::parser::extract_date;
-    use regex::Regex;
-
-
-    #[test]
-    fn remove_substring() {
-        let line = "[29Dec2022 02:21:19.852] [main/DEBUG]";
-        let subline = "[29Dec2022 02:21:19.852]";
-
-        println!("Does line contains sub? {}", line.to_string().contains(subline));
-
-        let line = line.replace(subline, "");
-
-        println!("Removed? {}", line);
-
-        assert_eq!(line, " [main/DEBUG]");
-        assert_eq!(line.trim(), "[main/DEBUG]");
-    }
-
-    #[test]
-    fn extract_date_1() {
-        let result = extract_date("[29Dec2022 02:21:19.852] [main/DEBUG]");
-
-        assert_eq!(result.0, "[main/DEBUG]");
-        assert_eq!(result.1, "29Dec2022 02:21:19.852");
-    }
-
-    #[test]
-    fn ansf() {
-        let re = Regex::new(r"Hello (?<name>\w+)!").unwrap();
-        let Some(caps) = re.captures("Hello Murphy!") else {
-           println!("no match!");
-          return;
-        };
-        println!("The name is: {}", &caps["name"]);
-    }
-
-    #[test]
-    fn validate_date() { 
-        let line = "29Dec2022 02:21:19.852";
-        let date_format_reg = Regex::new(r"^(?<day>\d{2})(?<month>\D{3})(?<year>\d{4}) (?<hour>\d{2})(:)(?<min>\d{2})(:)(?<sec>\d{2}\..*)").unwrap();
-
-        let Some(caps) = date_format_reg.captures(line) else { panic!("Critical failure in test: regex failed to match.") };
-
-        println!("{}", &caps["day"]);
-        println!("{}", &caps["month"]);
-        println!("{}", &caps["year"]);
-        println!("{}", &caps["hour"]);
-        println!("{}", &caps["min"]);
-        println!("{}", &caps["sec"]);
-
-        assert_eq!(&caps["day"], "29");
-        assert_eq!(&caps["month"], "Dec");
-        assert_eq!(&caps["year"], "2022");
-        assert_eq!(&caps["hour"], "02");
-        assert_eq!(&caps["min"], "21");
-        assert_eq!(&caps["sec"], "19.852");
-    }
-
-    #[test]
-    fn v() {
-        let line = "[29Dec2022 02:21:19.852] [main/DEBUG]";
-        let regex = Regex::new(r"(^\[)(?<date>.*?)(\])").unwrap();
-    
-        let Some(caps) = regex.captures(line) else { panic!("Failed to match") };
-;
-        assert_eq!(&caps["date"], "29Dec2022 02:21:19.852");
-        assert!(regex.is_match("[29Dec2022 02:21:19.852]"));
-    }
-
 }
 
 pub fn get_record_from_line(line: &str, log_type: CommonLogTypes) -> Option<Record> {

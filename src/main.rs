@@ -9,6 +9,7 @@ mod args;
 mod commonlogtypes;
 mod parser;
 mod record;
+mod extract_record;
 
 fn main() {
     let args = args::Args::parse();

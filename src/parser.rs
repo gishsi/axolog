@@ -3,7 +3,7 @@ use std::fs;
 use std::io::{BufRead, BufReader};
 use crate::commonlogtypes::CommonLogTypes;
 use crate::commonlogtypes::CommonLogTypes::All;
-use crate::extract_record::extract_record;
+use crate::extract_record::extract_record_from_line;
 use crate::record::Record;
 
 const BEGIN_DELIMITER: char = '[';
@@ -11,6 +11,7 @@ const END_DELIMITER: char = ']';
 
 pub fn extract_records() -> Vec<Record>{
     let mut records: Vec<Record> = vec![];
+    
     // A line represents a record or a description that belongs to the last log entry
     let record: Option<Record> = parse_line_into_record("[1] [2] [3] Des");
 
@@ -32,7 +33,7 @@ pub fn parse_line_into_record(line: &str) -> Option<Record>{
     // if line starts with [ then it is a new record,
     // otherwise it will be a continuation of a previous record description.
     if line.starts_with(BEGIN_DELIMITER) {
-        return Some(extract_record(""));
+        return Some(extract_record_from_line("").unwrap());
     }
 
     None

@@ -1,6 +1,7 @@
 use std::fs::File;
 use std::io::Write;
 use clap::{Parser};
+use extract_record::convert_lines_in_file_into_records;
 use crate::args::Args;
 use crate::parser::extract_records_from_file;
 use crate::record::Record;
@@ -25,7 +26,7 @@ pub fn analyze_log(args: Args) {
         }
     };
 
-    let extracted_records: Vec<Record> = extract_records_from_file(file, args.log_type);
+    let extracted_records: Vec<Record> = convert_lines_in_file_into_records(file); //extract_records_from_file(file, args.log_type);
 
     if !args.path_to_save.is_empty() {
         match save_to_file(extracted_records, args.path_to_save.as_str()) {

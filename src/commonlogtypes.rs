@@ -1,7 +1,7 @@
-#[derive(Copy, Clone, clap::ValueEnum, strum_macros::Display)]
+#[derive(Copy, Clone, clap::ValueEnum, strum_macros::Display, Default)]
 #[derive(Hash, Eq, PartialEq, Debug)]
 pub enum CommonLogTypes {
-    All,
+    #[default] All,
     Info,
     Debug,
     Warn,
@@ -12,10 +12,4 @@ pub enum CommonLogTypes {
     MainDebug,
     MainWarn,
     MainError
-}
-
-impl Default for CommonLogTypes {
-    fn default() -> Self {
-        CommonLogTypes::All
-    }
 }

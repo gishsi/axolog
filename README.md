@@ -1,4 +1,4 @@
-# [WIP] axolog
+# [WIP] axolog | Learning project
 
 > Note: This is very much still a work in progress. I am a new Rust programmer and I will refine this code as I learn more about both this programming language and Minecraft logs.
 

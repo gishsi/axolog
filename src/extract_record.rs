@@ -1,17 +1,50 @@
+use std::fs;
+use std::io::{BufRead, BufReader};
+
 use crate::record::Record;
 
 const BEGIN_DELIMITER: char = '[';
 const END_DELIMITER: char = ']';
 
-pub fn extract_record(line: &str) -> Record {
-    let (line, date) = extract_date(line);
-    let (line, logtype) = extract_type(line);
-    let (description, cause) = extract_cause(line);
+pub fn convert_lines_in_file_into_records(file: fs::File) -> Vec<Record>{
+    let mut records: Vec<Record> = vec![];
+    let reader = BufReader::new(file);
 
-    Record::_new(logtype.to_string(), cause.to_string(), date.to_string(), description.to_string())
+    for (_index, line) in reader.lines().enumerate() {
+        let l = line.unwrap();
+        let record = match extract_record_from_line(l.as_str()) {
+            Some(r) => r,
+            None => add_description_to_last_record()
+        };
+
+        records.push(record);
+    
+    }
+
+    records
 }
 
-fn parse_date(date: &str) -> &str{
+pub fn add_description_to_last_record() -> Record {
+    Record::default()
+}
+
+pub fn extract_record_from_line(line: &str) -> Option<Record> {
+    let Some((line, date)) = extract_date(line) else {
+        return None;
+    };
+
+    let Some((line, logtype)) = extract_type(line) else {
+        return None;
+    };
+
+    let Some((description, cause)) = extract_cause(line) else {
+        return None;
+    };
+
+    Some(Record::_new(logtype.to_string(), cause.to_string(), date.to_string(), description.to_string()))
+}
+
+fn parse_date(date: &str) -> Option<&str> {
     // Extract the date
     // let regex = Regex::new(r"(^\[)(?<date>.*?)(\])")
     //     .unwrap();
@@ -32,60 +65,89 @@ fn parse_date(date: &str) -> &str{
     // let c = &caps[0].to_owned();
 
     // c
-    date
+    Some(date)
 }
 
-fn  extract_token_and_line(original: &str) -> (&str, &str) {
-    let begin = original.chars().position(| c | c == BEGIN_DELIMITER).unwrap();
-    let end = original.chars().position(| c | c == END_DELIMITER).unwrap();
+fn  extract_token_and_line(original: &str) -> Option<(&str, &str)> {
+    let Some(begin) = original.chars().position(| c | c == BEGIN_DELIMITER) else {
+        dbg!("Could not find the beginning delimeter: {}", original);
+        return None;
+    };
+
+    let Some(end) = original.chars().position(| c | c == END_DELIMITER) else {
+        dbg!("Could not find the ending delimeter: {}", original);
+        return None;
+    };
+
     let mut iter = original.char_indices();
-    let (start, _) = iter.nth(begin).unwrap();
-    let (end, _) = iter.nth(end).unwrap();
+
+    let Some((start, _)) = iter.nth(begin) else {
+        dbg!("Failed to find the index of the beginning delimeter: {}", original);
+        return None;
+    };
+
+    let Some((end, _)) = iter.nth(end) else {
+        dbg!("Failed to find the index of the ending delimeter: {}", original);
+        return None;
+    };
+
     let slice = &original[start..end];
 
-    let removed_prefix = original.strip_prefix(slice)
-        .unwrap()
-        .trim();
+    let Some(removed_prefix) = original.strip_prefix(slice) else {
+        dbg!("Failed to remove the prefix from line: {}", original);
+        return None;
+    };
+
+    let removed_prefix = removed_prefix.trim();
 
     let line = removed_prefix;
-    let token = slice.strip_prefix(BEGIN_DELIMITER).unwrap().strip_suffix(END_DELIMITER).unwrap();
 
-    (line, token)
+    let Some(token_suffix_removed) = slice.strip_prefix(BEGIN_DELIMITER) else {
+        dbg!("Failed to remove the begin delimeter: {}", original);
+        return None;
+    };
+
+    let Some(token) = token_suffix_removed.strip_suffix(END_DELIMITER) else {
+        dbg!("Failed to remove the end delimeter: {}", original);
+        return None;
+    };
+
+    Some((line, token))
 }
 
-pub fn extract_date(line: &str) -> (&str, &str) {
-    let (l, t) = extract_token_and_line(line);
+pub fn extract_date(line: &str) -> Option<(&str, &str)> {
+    let data = extract_token_and_line(line);
   
-    let l = parse_date(l);
+    // let l = parse_date(l);
 
-    (l, t)
+    data
 }
 
-pub fn extract_type(line: &str) -> (&str, &str) {
-    let (l, t) = extract_token_and_line(line);
+pub fn extract_type(line: &str) -> Option<(&str, &str)> {
+    let data = extract_token_and_line(line);
 
     // parse
 
-    (l, t)
+    data
 }
 
-pub fn extract_cause(line: &str) -> (&str, &str) {
-    let (l, t) = extract_token_and_line(line);
+pub fn extract_cause(line: &str) -> Option<(&str, &str)> {
+    let data = extract_token_and_line(line);
 
     // parse
 
-    (l, t)
+    data
 }
 
 #[cfg(test)]
 mod extract_record_tests {
     use regex::Regex;
 
-    use super::{extract_record, extract_date};
+    use super::{extract_record_from_line, extract_date};
 
     #[test]
-    fn extract_record_from_line() {
-        let result = extract_record("[29Dec2022 02:21:19.852] [main/DEBUG] [biomes-o-plenty]: Too many chunks");
+    fn extract_record() {
+        let result = extract_record_from_line("[29Dec2022 02:21:19.852] [main/DEBUG] [biomes-o-plenty]: Too many chunks").unwrap();
 
         assert_eq!(result.date, "29Dec2022 02:21:19.852");
         assert_eq!(result.m_type, "main/DEBUG");
@@ -111,7 +173,7 @@ mod extract_record_tests {
 
     #[test]
     fn extract_date_1() {
-        let result = extract_date("[29Dec2022 02:21:19.852] [main/DEBUG]");
+        let result = extract_date("[29Dec2022 02:21:19.852] [main/DEBUG]").unwrap();
 
         assert_eq!(result.0, "[main/DEBUG]");
         assert_eq!(result.1, "29Dec2022 02:21:19.852");
@@ -155,7 +217,7 @@ mod extract_record_tests {
         let regex = Regex::new(r"(^\[)(?<date>.*?)(\])").unwrap();
     
         let Some(caps) = regex.captures(line) else { panic!("Failed to match") };
-;
+
         assert_eq!(&caps["date"], "29Dec2022 02:21:19.852");
         assert!(regex.is_match("[29Dec2022 02:21:19.852]"));
     }

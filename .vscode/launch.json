@@ -19,7 +19,7 @@
                     "kind": "bin"
                 }
             },
-            "args": ["--path-to-file", "D:\\dev\\axolog\\example_logs\\example_1.log", "--path-to-save",  "D:\\dev\\axolog\\output\\ex1.log"],
+            "args": ["--path-to-file", "D:\\dev\\axolog\\example_logs\\example_1.log", "--path-to-save",  "D:\\dev\\axolog\\output\\ex1.log", "--log-type", "main"],
             "cwd": "${workspaceFolder}"
         },
         {

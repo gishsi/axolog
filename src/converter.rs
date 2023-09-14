@@ -1,6 +1,9 @@
+use core::panic;
+use std::collections::HashMap;
 use std::fs;
 use std::io::{BufRead, BufReader};
 
+use crate::commonlogtypes::CommonLogTypes;
 use crate::record::Record;
 
 const BEGIN_DELIMITER: char = '[';
@@ -11,24 +14,63 @@ pub fn convert_lines_in_file_into_records(file: fs::File) -> Vec<Record>{
     let reader = BufReader::new(file);
 
     for (_index, line) in reader.lines().enumerate() {
-        let l = line.unwrap();
-        let record = match extract_record_from_line(l.as_str()) {
-            Some(r) => r,
-            None => add_description_to_last_record()
+        let line = line.unwrap();
+
+        let Some(record) = extract_record_from_line(line.as_str()) else {
+            add_description_to_last_record(&mut records, line);
+            continue;
         };
 
         records.push(record);
-    
     }
 
     records
 }
 
-pub fn add_description_to_last_record() -> Record {
-    Record::default()
+pub fn filter_records_by_type(log_type: CommonLogTypes, records: &mut Vec<Record>) -> Vec<Record> {
+    let result: Vec<Record> = records
+        .drain(..)
+        .filter(|record| {
+            let types = HashMap::from([
+                (CommonLogTypes::All, "All"),
+                (CommonLogTypes::Main, "main"),
+                (CommonLogTypes::Info, "INFO"),
+                (CommonLogTypes::Debug, "DEBUG"),
+                (CommonLogTypes::Warn, "WARN"),
+                (CommonLogTypes::Error, "ERROR"),
+                (CommonLogTypes::Fatal, "FATAL"),
+                (CommonLogTypes::MainInfo, "main/INFO"),
+                (CommonLogTypes::MainDebug, "main/DEBUG"),
+                (CommonLogTypes::MainError, "main/ERROR"),
+                (CommonLogTypes::MainWarn, "main/WARN"),
+            ]);
+
+            if (log_type == CommonLogTypes::Main ||
+                    log_type == CommonLogTypes::Info ||
+                    log_type == CommonLogTypes::Debug ||
+                    log_type == CommonLogTypes::Warn ||
+                    log_type == CommonLogTypes::Error ||
+                    log_type == CommonLogTypes::Fatal) && record.m_type.contains(types[&log_type]) {
+                        return true;
+                }
+
+            record.m_type == types[&log_type].to_string() // rust says to use *types[&log_type], but I don't know why
+        })
+        .collect();
+
+    result
 }
 
-pub fn extract_record_from_line(line: &str) -> Option<Record> {
+// Not a pure function, but won't change a global instance of a Records vector
+fn add_description_to_last_record(records: &mut [Record], line: String) {
+    let Some(last) = records.last_mut() else {
+        panic!("Could not find a record to add the description to.");
+    };
+
+    last.description = last.description.to_string() + "\n" + line.as_str();
+}
+
+fn extract_record_from_line(line: &str) -> Option<Record> {
     let Some((line, date)) = extract_date(line) else {
         return None;
     };
@@ -69,6 +111,7 @@ fn parse_date(date: &str) -> Option<&str> {
 }
 
 fn  extract_token_and_line(original: &str) -> Option<(&str, &str)> {
+    // https://stackoverflow.com/questions/55755552/what-is-the-rust-equivalent-to-a-try-catch-statement
     let Some(begin) = original.chars().position(| c | c == BEGIN_DELIMITER) else {
         dbg!("Could not find the beginning delimeter: {}", original);
         return None;
@@ -115,7 +158,7 @@ fn  extract_token_and_line(original: &str) -> Option<(&str, &str)> {
     Some((line, token))
 }
 
-pub fn extract_date(line: &str) -> Option<(&str, &str)> {
+fn extract_date(line: &str) -> Option<(&str, &str)> {
     let data = extract_token_and_line(line);
   
     // let l = parse_date(l);
@@ -123,7 +166,7 @@ pub fn extract_date(line: &str) -> Option<(&str, &str)> {
     data
 }
 
-pub fn extract_type(line: &str) -> Option<(&str, &str)> {
+fn extract_type(line: &str) -> Option<(&str, &str)> {
     let data = extract_token_and_line(line);
 
     // parse
@@ -131,7 +174,7 @@ pub fn extract_type(line: &str) -> Option<(&str, &str)> {
     data
 }
 
-pub fn extract_cause(line: &str) -> Option<(&str, &str)> {
+fn extract_cause(line: &str) -> Option<(&str, &str)> {
     let data = extract_token_and_line(line);
 
     // parse

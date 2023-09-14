@@ -1,16 +1,15 @@
 use std::fs::File;
 use std::io::Write;
-use clap::{Parser};
-use extract_record::convert_lines_in_file_into_records;
+use clap::Parser;
+use commonlogtypes::CommonLogTypes;
+use converter::{convert_lines_in_file_into_records, filter_records_by_type};
 use crate::args::Args;
-use crate::parser::extract_records_from_file;
 use crate::record::Record;
 
 mod args;
 mod commonlogtypes;
-mod parser;
 mod record;
-mod extract_record;
+mod converter;
 
 fn main() {
     let args = args::Args::parse();
@@ -26,10 +25,15 @@ pub fn analyze_log(args: Args) {
         }
     };
 
-    let extracted_records: Vec<Record> = convert_lines_in_file_into_records(file); //extract_records_from_file(file, args.log_type);
+    let mut records: Vec<Record> = convert_lines_in_file_into_records(file);
+
+    if args.log_type != CommonLogTypes::All {
+        records = filter_records_by_type(args.log_type, &mut records);
+    }
+    
 
     if !args.path_to_save.is_empty() {
-        match save_to_file(extracted_records, args.path_to_save.as_str()) {
+        match save_to_file(records, args.path_to_save.as_str()) {
             Ok(_) => {
                 println!("Logs parsed and saved at {}", args.path_to_save.as_str());
                 return;
@@ -41,7 +45,7 @@ pub fn analyze_log(args: Args) {
     }
 
     // If path to save is empty, or invalid print the parsed records into the cli
-    for extracted_record in extracted_records {
+    for extracted_record in records {
         println!("{:?}", extracted_record);
     }
 }

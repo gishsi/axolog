@@ -1,9 +1,8 @@
-# [WIP] axolog | Learning project
+# axolog | Learning project
 
-> Note: This is very much still a work in progress. I am a new Rust programmer and I will refine this code as I learn more about both this programming language and Minecraft logs.
+Have you ever looked through a Minecraft log file? Let's be honest here, it's a pain. Especially when making a modded server, with hundreds of log entries, all belonging to different Minecraft mods, types, and threads, it is no easy task finding the cause of why your friend texted you at 3 AM, saying the server crushed right when they were mining diamonds. It's always right when they were mining diamonds. What a coincidence.
 
-
-**Motivation**: when creating a Minecraft modded server I found looking through Minecraft crash logs a huge pain. This utility tool aims to make this process easier.
+Regardless of your friend's honesty, you gotta fix it. You just gotta do it. This utility tool aims to make the process of recognizing the root of the server's failure much easier by converting the unstructured .log file into a more structured JSON equivalent. 
 
 # Usage
 
@@ -17,14 +16,15 @@ Options:
       -h, --help                         Print help
       -V, --version                      Print version
 
+Use `cargo doc --open` for more documentation
+
 # Supported features
 
 Just the basics: 
 1. JSON output for the formatted logs
-2. You can get logs from a specific type of a log: main, info, debug, warn, error, fatal, main-info, main-debug, main-error, main-warn (I will add more as I see them, but some are generated per server without a way of predicting them that's clear to me now, e.g. pool-3-thread-1/DEBUG)
+2. You can get logs from a specific type of a log: main, info, debug, warn, error, fatal, main-info, main-debug, main-error, main-warn (I will add more as I find them, but some are generated per server without a way of predicting them, e.g. pool-3-thread-1/DEBUG)
 
 # Roadmap
 
-- better visual of the output log when the description has some newlines
-- more types
+- better visual of the output log
 - other filetypes for output, e.g. CVS

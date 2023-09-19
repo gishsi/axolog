@@ -3,11 +3,10 @@ use serde::{Deserialize, Serialize};
 #[derive(Debug)]
 #[derive(Serialize, Deserialize)]
 pub struct Record {
-    /// todo: probably should not be pub, research getters and setters in Rust
-    pub m_type: String, // todo: research String vs str
-    pub cause: String,
-    pub date: String,
-    pub description: String,
+    m_type: String, 
+    cause: String,
+    date: String,
+    description: String,
 }
 
 impl Record {
@@ -18,5 +17,30 @@ impl Record {
             date: dt,
             description: desc,
         }
+    }
+
+    /// Get the type of a record
+    pub fn m_type(&self) -> &String {
+        &self.m_type
+    }
+
+    /// Get the date of a record
+    pub fn date(&self) -> &String {
+        &self.date
+    }
+
+    /// Get the cause of a record
+    pub fn cause(&self) -> &String {
+        &self.cause
+    }
+
+    /// Set the description of a record
+    pub fn description(&mut self) -> &mut String {
+        &mut self.m_type
+    }
+
+    /// Get the description of a record
+    pub fn get_description(&self) -> &String {
+        &self.m_type
     }
 }

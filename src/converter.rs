@@ -57,12 +57,12 @@ pub fn filter_records_by_type(log_type: CommonLogTypes, records: &mut Vec<Record
                     log_type == CommonLogTypes::Debug ||
                     log_type == CommonLogTypes::Warn ||
                     log_type == CommonLogTypes::Error ||
-                    log_type == CommonLogTypes::Fatal) && record.m_type.contains(types[&log_type]) {
+                    log_type == CommonLogTypes::Fatal) && record.m_type().contains(types[&log_type]) {
                         return true;
                 }
 
             // to_string ownes this value just for comparison
-            record.m_type == *types[&log_type]
+            *record.m_type().to_owned() == *types[&log_type]
         })
         .collect();
 
@@ -79,7 +79,7 @@ fn add_description_to_last_record(records: &mut [Record], line: String) {
         panic!("Could not find a record to add the description to.");
     };
 
-    last.description = last.description.to_string() + "\n" + line.as_str();
+    *last.description() = last.description().to_string() + "\n" + line.as_str();
 }
 
 /// Each entry contains four pieces of data: date, type of the log, what caused it (which thread), and description. 
@@ -215,10 +215,10 @@ mod extract_record_tests {
     fn extract_record() {
         let result = extract_record_from_line("[29Dec2022 02:21:19.852] [main/DEBUG] [biomes-o-plenty]: Too many chunks").unwrap();
 
-        assert_eq!(result.date, "29Dec2022 02:21:19.852");
-        assert_eq!(result.m_type, "main/DEBUG");
-        assert_eq!(result.cause, "biomes-o-plenty");
-        assert_eq!(result.description, ": Too many chunks");
+        assert_eq!(result.date(), "29Dec2022 02:21:19.852");
+        assert_eq!(result.m_type(), "main/DEBUG");
+        assert_eq!(result.cause(), "biomes-o-plenty");
+        assert_eq!(result.get_description(), ": Too many chunks");
     }
 
     #[test]

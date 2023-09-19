@@ -54,7 +54,8 @@ pub fn filter_records_by_type(log_type: CommonLogTypes, records: &mut Vec<Record
                         return true;
                 }
 
-            record.m_type == *types[&log_type] // rust says to use *types[&log_type], but I don't know why
+            // to_string ownes this value just for comparison
+            record.m_type == *types[&log_type]
         })
         .collect();
 
@@ -198,7 +199,6 @@ mod extract_record_tests {
         assert_eq!(result.description, ": Too many chunks");
     }
 
-
     #[test]
     fn remove_substring() {
         let line = "[29Dec2022 02:21:19.852] [main/DEBUG]";
@@ -215,7 +215,7 @@ mod extract_record_tests {
     }
 
     #[test]
-    fn extract_date_1() {
+    fn extract_date_() {
         let result = extract_date("[29Dec2022 02:21:19.852] [main/DEBUG]").unwrap();
 
         assert_eq!(result.0, "[main/DEBUG]");
@@ -223,28 +223,11 @@ mod extract_record_tests {
     }
 
     #[test]
-    fn ansf() {
-        let re = Regex::new(r"Hello (?<name>\w+)!").unwrap();
-        let Some(caps) = re.captures("Hello Murphy!") else {
-           println!("no match!");
-          return;
-        };
-        println!("The name is: {}", &caps["name"]);
-    }
-
-    #[test]
-    fn validate_date() { 
+    fn validate_date_regex() { 
         let line = "29Dec2022 02:21:19.852";
         let date_format_reg = Regex::new(r"^(?<day>\d{2})(?<month>\D{3})(?<year>\d{4}) (?<hour>\d{2})(:)(?<min>\d{2})(:)(?<sec>\d{2}\..*)").unwrap();
 
         let Some(caps) = date_format_reg.captures(line) else { panic!("Critical failure in test: regex failed to match.") };
-
-        println!("{}", &caps["day"]);
-        println!("{}", &caps["month"]);
-        println!("{}", &caps["year"]);
-        println!("{}", &caps["hour"]);
-        println!("{}", &caps["min"]);
-        println!("{}", &caps["sec"]);
 
         assert_eq!(&caps["day"], "29");
         assert_eq!(&caps["month"], "Dec");
@@ -253,16 +236,4 @@ mod extract_record_tests {
         assert_eq!(&caps["min"], "21");
         assert_eq!(&caps["sec"], "19.852");
     }
-
-    #[test]
-    fn v() {
-        let line = "[29Dec2022 02:21:19.852] [main/DEBUG]";
-        let regex = Regex::new(r"(^\[)(?<date>.*?)(\])").unwrap();
-    
-        let Some(caps) = regex.captures(line) else { panic!("Failed to match") };
-
-        assert_eq!(&caps["date"], "29Dec2022 02:21:19.852");
-        assert!(regex.is_match("[29Dec2022 02:21:19.852]"));
-    }
-
 }

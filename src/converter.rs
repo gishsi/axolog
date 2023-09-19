@@ -54,7 +54,7 @@ pub fn filter_records_by_type(log_type: CommonLogTypes, records: &mut Vec<Record
                         return true;
                 }
 
-            record.m_type == types[&log_type].to_string() // rust says to use *types[&log_type], but I don't know why
+            record.m_type == *types[&log_type] // rust says to use *types[&log_type], but I don't know why
         })
         .collect();
 

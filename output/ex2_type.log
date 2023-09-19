@@ -1,0 +1,20 @@
+[
+  {
+    "m_type": "main/INFO",
+    "cause": "cpw.mods.modlauncher.Launcher/MODLAUNCHER",
+    "date": "29Dec2022 02:21:19.841",
+    "description": ": ModLauncher 8.1.3+8.1.3+main-8.1.x.c94d18ec starting:\njava version 1.8.0_51 by Oracle Corporation"
+  },
+  {
+    "m_type": "main/DEBUG",
+    "cause": "cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER",
+    "date": "29Dec2022 02:21:19.852",
+    "description": ": Found launch services [minecraft,testharness,fmlclient,fmlserver]"
+  },
+  {
+    "m_type": "main/WARN",
+    "cause": "cpw.mods.modlauncher.SecureJarHandler/",
+    "date": "29Dec2022 02:21:19.856",
+    "description": ": LEGACY JDK DETECTED, SECURED JAR HANDLING DISABLED"
+  }
+]

@@ -6,10 +6,16 @@ use std::io::{BufRead, BufReader};
 use crate::commonlogtypes::CommonLogTypes;
 use crate::record::Record;
 
+/// Each new log entry begins with this character
 const BEGIN_DELIMITER: char = '[';
+
+// For each entry there are four main pieces of information. This character marks the end of each one (expect the description)
 const END_DELIMITER: char = ']';
 
-pub fn convert_lines_in_file_into_records(file: fs::File) -> Vec<Record>{
+
+/// Each line in a valid log file can be either a new entry, or can hold additional information about the previous entry 
+///     (newline, overflow description).
+pub fn convert_lines_into_records(file: fs::File) -> Vec<Record>{
     let mut records: Vec<Record> = vec![];
     let reader = BufReader::new(file);
 
@@ -27,6 +33,7 @@ pub fn convert_lines_in_file_into_records(file: fs::File) -> Vec<Record>{
     records
 }
 
+/// Support for filtering by the most common log types observed.
 pub fn filter_records_by_type(log_type: CommonLogTypes, records: &mut Vec<Record>) -> Vec<Record> {
     let result: Vec<Record> = records
         .drain(..)
@@ -62,7 +69,11 @@ pub fn filter_records_by_type(log_type: CommonLogTypes, records: &mut Vec<Record
     result
 }
 
-// Not a pure function, but won't change a global instance of a Records vector
+/// Adds the overflow (newline) description onto the last added record. 
+/// 
+/// # Panics
+/// 
+/// Panics if there are no records - file must be corrupted.
 fn add_description_to_last_record(records: &mut [Record], line: String) {
     let Some(last) = records.last_mut() else {
         panic!("Could not find a record to add the description to.");
@@ -71,6 +82,9 @@ fn add_description_to_last_record(records: &mut [Record], line: String) {
     last.description = last.description.to_string() + "\n" + line.as_str();
 }
 
+/// Each entry contains four pieces of data: date, type of the log, what caused it (which thread), and description. 
+/// First three are contained within a set of square brackets (e.g. [29Dec2022 02:21:19.852]). Description is specified after the cause,
+/// separated by a colon.
 fn extract_record_from_line(line: &str) -> Option<Record> {
     let Some((line, date)) = extract_date(line) else {
         return None;
@@ -87,6 +101,7 @@ fn extract_record_from_line(line: &str) -> Option<Record> {
     Some(Record::_new(logtype.to_string(), cause.to_string(), date.to_string(), description.to_string()))
 }
 
+/// Parses the date into the format used by the Minecraft loggger.
 fn parse_date(date: &str) -> Option<&str> {
     // Extract the date
     // let regex = Regex::new(r"(^\[)(?<date>.*?)(\])")
@@ -111,6 +126,7 @@ fn parse_date(date: &str) -> Option<&str> {
     Some(date)
 }
 
+/// A token can be a date, type, or a cause. The line returned is the remaining data after removing the token with corresponding set of brackets.
 fn  extract_token_and_line(original: &str) -> Option<(&str, &str)> {
     // https://stackoverflow.com/questions/55755552/what-is-the-rust-equivalent-to-a-try-catch-statement
     let Some(begin) = original.chars().position(| c | c == BEGIN_DELIMITER) else {
@@ -159,6 +175,8 @@ fn  extract_token_and_line(original: &str) -> Option<(&str, &str)> {
     Some((line, token))
 }
 
+/// Extracts date from the provided line, parsers it and returns the date and the remaining line if valid. 
+/// Must be called first when analyzing a log entry.
 fn extract_date(line: &str) -> Option<(&str, &str)> {
     let data = extract_token_and_line(line);
   
@@ -167,6 +185,8 @@ fn extract_date(line: &str) -> Option<(&str, &str)> {
     data
 }
 
+/// Extracts type from the provided line and returns the type and the remaining line if valid. 
+/// Must be called second when analyzing a log entry, after extracting the date (see [extract_date()]).
 fn extract_type(line: &str) -> Option<(&str, &str)> {
     let data = extract_token_and_line(line);
 
@@ -175,6 +195,8 @@ fn extract_type(line: &str) -> Option<(&str, &str)> {
     data
 }
 
+/// Extracts cause from the provided line and returns the cause and the remaining line if valid. 
+/// Must be called last when analyzing a log entry, after extracting the date (see [extract_date()]) and the type (see [extract_type()]).
 fn extract_cause(line: &str) -> Option<(&str, &str)> {
     let data = extract_token_and_line(line);
 

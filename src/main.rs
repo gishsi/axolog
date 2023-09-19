@@ -2,7 +2,7 @@ use std::fs::File;
 use std::io::Write;
 use clap::Parser;
 use commonlogtypes::CommonLogTypes;
-use converter::{convert_lines_in_file_into_records, filter_records_by_type};
+use converter::{convert_lines_into_records, filter_records_by_type};
 use crate::args::Args;
 use crate::record::Record;
 
@@ -14,10 +14,16 @@ mod converter;
 fn main() {
     let args = args::Args::parse();
 
-    analyze_log(args);
+    convert_log_file(args);
 }
 
-pub fn analyze_log(args: Args) {
+/// Parses the unstructured Minecraft log file pointed to by the user into structured JSON equivalent.
+///
+/// # Panics
+///
+/// Panics if log file poitned to does not exist, path to save the JSON file with structured logs does not exist or 
+/// critical failure resulting from a corrupt log file occured.
+pub fn convert_log_file(args: Args) {
     let file = match File::open(args.path_to_file) {
         Ok(f) => f,
         Err(err) => {
@@ -25,7 +31,7 @@ pub fn analyze_log(args: Args) {
         }
     };
 
-    let mut records: Vec<Record> = convert_lines_in_file_into_records(file);
+    let mut records: Vec<Record> = convert_lines_into_records(file);
 
     if args.log_type != CommonLogTypes::All {
         records = filter_records_by_type(args.log_type, &mut records);
@@ -70,7 +76,6 @@ fn save_to_file(records: Vec<Record>, path: &str) -> Result<bool, &str> {
             Ok(true)
         }
         Err(e) => {
-            // todo: why not red output from panic!()?
             panic!("{}\npath: {}", e, path);
         }
     };

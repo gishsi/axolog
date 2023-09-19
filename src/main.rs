@@ -24,11 +24,8 @@ fn main() {
 /// Panics if log file poitned to does not exist, path to save the JSON file with structured logs does not exist or 
 /// critical failure resulting from a corrupt log file occured.
 pub fn convert_log_file(args: Args) {
-    let file = match File::open(args.path_to_file) {
-        Ok(f) => f,
-        Err(err) => {
-            panic!("Unknown error when opening file. \n\t{}", err);
-        }
+    let Ok(file) = File::open(args.path_to_file) else {
+        panic!("Erroroccured  when opening file.");
     };
 
     let mut records: Vec<Record> = convert_lines_into_records(file);
@@ -57,18 +54,12 @@ pub fn convert_log_file(args: Args) {
 }
 
 fn save_to_file(records: Vec<Record>, path: &str) -> Result<bool, &str> {
-    let json = match serde_json::to_string_pretty(&records) {
-        Ok(j) => j,
-        Err(e) => {
-            panic!("{}\npath: {}", e, path);
-        }
+    let Ok(json) = serde_json::to_string_pretty(&records) else {
+        panic!("Error occured when saving the file, path: {}", path);
     };
 
-    let mut formatted_data_file = match File::create(path) {
-        Ok(f) => f,
-        Err(e) => {
-            panic!("{}\npath: {}", e, path);
-        }
+    let Ok(mut formatted_data_file) = File::create(path) else {
+        panic!("Error occured when creating a file, path: {}", path);
     };
 
     return match formatted_data_file.write_all(json.as_ref()) {
@@ -76,7 +67,7 @@ fn save_to_file(records: Vec<Record>, path: &str) -> Result<bool, &str> {
             Ok(true)
         }
         Err(e) => {
-            panic!("{}\npath: {}", e, path);
+            panic!("Error occured when writing to the file\n{}\npath: {}", e, path);
         }
     };
 }
